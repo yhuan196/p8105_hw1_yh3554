@@ -3,5 +3,34 @@ title: "p8105_hw1_yh3554"
 output: github_document
 ---
 
-## R Markdown
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+This is my first data science HW.
+
+#Problem 1
+
+Load the dataset.
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+####Description
+The dataset includes the measurement of penguin species that collect from islands of Plamer Archipelago of Antarctica. The variables are species, island, body measurement (bill length in in millimeters , bill depth in millimeters, flipper length in millimeters, body mass in gram), sex, and year. The data has `r nrow(penguins)` rows and `r ncol(penguins)` variables. The mean of flipper length is `rround(mean(penguins$flipper_length_mm,na.rm=TRUE), 2)` millimeters.
+
+### Scatterplot
+
+This is scatterplot of flipper length vs bill length.
+
+```{r}
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm, 
+           colour = factor(species))) + geom_point()
+ggsave("scatterplot of hw1.pdf", height = 4, width = 6)
+```
+
+# Problem 2
+
 
