@@ -18,7 +18,7 @@ data("penguins", package = "palmerpenguins")
 ```
 
 #### Description
-The dataset includes the measurement of penguin species that collect from islands of Plamer Archipelago of Antarctica. The variables are species, island, body measurement (bill length in in millimeters , bill depth in millimeters, flipper length in millimeters, body mass in gram), sex, and year. The data has `r nrow(penguins)` rows and `r ncol(penguins)` variables. The mean of flipper length is `rround(mean(penguins$flipper_length_mm,na.rm=TRUE), 2)` millimeters.
+The dataset includes the measurement of penguin species that collect from islands of Plamer Archipelago of Antarctica. The variables are species, island, body measurement (bill length in in millimeters , bill depth in millimeters, flipper length in millimeters, body mass in gram), sex, and year. The data has `r nrow(penguins)` rows and `r ncol(penguins)` variables. The mean of flipper length is `r round(mean(penguins$flipper_length_mm,na.rm=TRUE), 2)` millimeters.
 
 #### Scatterplot
 
