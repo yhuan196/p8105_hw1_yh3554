@@ -17,10 +17,10 @@ Load the dataset.
 data("penguins", package = "palmerpenguins")
 ```
 
-####Description
+#### Description
 The dataset includes the measurement of penguin species that collect from islands of Plamer Archipelago of Antarctica. The variables are species, island, body measurement (bill length in in millimeters , bill depth in millimeters, flipper length in millimeters, body mass in gram), sex, and year. The data has `r nrow(penguins)` rows and `r ncol(penguins)` variables. The mean of flipper length is `rround(mean(penguins$flipper_length_mm,na.rm=TRUE), 2)` millimeters.
 
-### Scatterplot
+#### Scatterplot
 
 This is scatterplot of flipper length vs bill length.
 
@@ -31,6 +31,42 @@ ggplot(penguins,
 ggsave("scatterplot of hw1.pdf", height = 4, width = 6)
 ```
 
+
 # Problem 2
+
+First I will create a dataframe.
+
+```{r}
+set.seed(1)
+p2_df <- tibble(
+  norm_sample = rnorm(10),
+  norm_logical = norm_sample > 0,
+  vec_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  vec_factor = factor(c("group 1", "group 2", "group 3", "group 3", "group 3", "group 2", "group 1", "group 1", "group 3", "group 1"))
+)
+```
+
+#### Mean of each variable.
+
+```{r}
+mean_sample = mean(pull(p2_df, norm_sample))
+mean_logical = mean(pull(p2_df, norm_logical))
+mean_char = mean(pull(p2_df, vec_char))
+mean_factor = mean(pull(p2_df, vec_factor))
+```
+
+Only numeric variable and logical variable works. There were two warning message when I take the mean of character variable and factor variable. R returns NA since these two variable are not numeric or logical.
+
+#### Convert variables to numeric variable
+
+```{r problem_1_conv, eval = FALSE}
+transform(p2_df, norm_logical = as.numeric(norm_logical))
+transform(p2_df, vec_char = as.numeric(vec_char))
+transform(p2_df, vec_factor = as.numeric(vec_factor))
+```
+
+The function `as.numeric` convert logical variable to 1 or 0, and convert factor variable to 1, 2, or 3. While taking mean of these variables, R automatically turn logical variable to 1 or 0. I can coerces factor variable to 1, 2, or 3 because it has 3 levels. However, it turns to NA when I apply the function to character variable. Since character variable can be anything, it cannot being interpretable as numbers. Thus we cannot coerces this variable to numeric. This explains why there was warning message.
+
+
 
 
